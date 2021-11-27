@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  # Nodejs
+  express-typescript-dot:
+    image: express-typescript-dot
+    container_name: express-typescript-dot
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev
+    networks:
+      express-typescript-dot_network:
+    restart: always
+    volumes:
+      - .:/usr/apps/express-typescript-dot
+      - /usr/apps/express-typescript-dot/node_modules
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+
+#Docker Networks
+networks:
+  express-typescript-dot_network:
+    driver: bridge
